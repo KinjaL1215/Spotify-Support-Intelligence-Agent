@@ -4,8 +4,8 @@ __pycache__/
 *.py[cod]
 .env
 .DS_Store
-data/
-data/*
-*.csv
+
+# Ignore large binary files if needed
 *.npy
 *.index
+
