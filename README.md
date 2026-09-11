@@ -52,22 +52,48 @@ An end-to-end, grounded customer support assistant designed for Spotify support 
 ## 📁 Project Structure
 
 ```
-Hiver-Agent/
+Spotify-Support-Intelligence-Agent/
+├── app/
+│   └── app.py                                 # Streamlit UI & interactive chat logic
 ├── data/
-│   ├── twcs.csv                               # Raw Twitter Customer Support dataset
-│   └── processed/
-│       ├── spotify_conversations.csv          # Cleaned Spotify customer-response pairs
-│       ├── spotify_classifier_balanced.csv    # Stratified intent classification dataset
-│       ├── embeddings.npy                     # Precomputed 384-d sentence embeddings
-│       ├── spotify_faiss.index                # FAISS vector similarity index
-│       ├── classifier_predictions.csv         # Model test predictions
-│       └── classifier_wrong_predictions.csv   # Misclassified sample error logs
-├── main.py                                    # Core pipeline & interactive CLI loop
-├── streamlit_app.py                           # Streamlit Web UI application
-├── requirements.txt                           # Python dependencies
+│   ├── spotify_conversations.csv              # Cleaned Spotify customer-response pairs (RAG)
+│   ├── spotify_classifier_balanced.csv        # Stratified intent classification dataset
+│   ├── embeddings.npy                         # Precomputed 384-d sentence embeddings
+│   ├── spotify_faiss.index                    # FAISS vector similarity index
+│   ├── classifier_predictions.csv             # Model evaluation predictions
+│   └── classifier_wrong_predictions.csv       # Misclassified sample error logs
+├── src/
+│   ├── __init__.py
+│   ├── agent/
+│   │   ├── __init__.py
+│   │   ├── llm_client.py                      # Groq LLM API client wrapper
+│   │   ├── pipeline.py                        # End-to-end support agent pipeline
+│   │   └── support_agent.py                   # Grounded response synthesis logic
+│   ├── classifier/
+│   │   ├── __init__.py
+│   │   ├── intent_classifier.py               # TF-IDF + LinearSVC training & inference
+│   │   ├── hybrid_intent_classifier.py        # Hybrid classification logic
+│   │   └── llm_intent_classifier.py           # LLM-based fallback classifier
+│   ├── escalation/
+│   │   ├── __init__.py
+│   │   └── decision.py                        # Safety escalation & guardrails engine
+│   ├── evaluation/
+│   │   ├── __init__.py
+│   │   └── evaluate_intent.py                 # Classification evaluation metrics
+│   └── retrieval/
+│       ├── __init__.py
+│       └── dense_retriever.py                 # SentenceTransformer & FAISS retriever
+├── tests/
+│   ├── __init__.py
+│   └── test_agent.py                          # Unit and pipeline tests
+├── main.py                                    # Interactive CLI mode entry point
+├── streamlit_app.py                           # Root entry point for Streamlit deployment
+├── requirements.txt                           # Python project dependencies
 ├── .env                                       # Local API secrets (GROQ_API_KEY)
+├── .gitignore                                 # Git ignore patterns
 └── README.md                                  # Project documentation
 ```
+
 
 ---
 
