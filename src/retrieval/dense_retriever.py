@@ -12,8 +12,8 @@ def load_embedding_model(model_name: str = DEFAULT_EMBEDDING_MODEL) -> SentenceT
 
 
 def build_or_load_rag_index(rag_data: pd.DataFrame, embedding_model: SentenceTransformer, embedding_file: Path, faiss_file: Path):
-    if embedding_file.exists() and faiss_file.exists():
-        embedding_matrix = np.load(embedding_file)
+    if faiss_file.exists():
+        embedding_matrix = np.load(embedding_file) if embedding_file.exists() else None
         index = faiss.read_index(str(faiss_file))
         return embedding_matrix, index
 

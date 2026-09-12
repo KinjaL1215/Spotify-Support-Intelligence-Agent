@@ -5,7 +5,6 @@ __pycache__/
 .env
 .DS_Store
 
-# Ignore large binary files if needed
+# Ignore raw numpy embeddings array (FAISS index alone is used for retrieval)
 *.npy
-*.index
 
