@@ -8,3 +8,8 @@ __pycache__/
 # Ignore raw numpy embeddings array (FAISS index alone is used for retrieval)
 *.npy
 
+# Ignore raw dataset and evaluation logs (not needed for Streamlit app)
+data/twcs.csv
+data/classifier_predictions.csv
+data/classifier_wrong_predictions.csv
+
