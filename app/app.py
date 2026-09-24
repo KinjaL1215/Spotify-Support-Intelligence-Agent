@@ -454,31 +454,21 @@ with st.sidebar:
 # ============================================================
 
 st.markdown(
-    f"""
-    <div class="hero-card">
-
-        <div>
-
-            <div class="hero-badge">
-                <span class="pulse-dot"></span>
-                Spotify Support Intelligence
-            </div>
-
-            <h1 class="hero-title">
-                {SPOTIFY_LOGO_SVG}
-                Customer Support Assistant
-            </h1>
-
-            <p class="hero-subtitle">
-                Ask any Spotify support question to receive
-                an instant, grounded response powered by
-                historical support intelligence.
-            </p>
-
-        </div>
-
-    </div>
-    """,
+    f"""<div class="hero-card">
+<div>
+<div class="hero-badge">
+<span class="pulse-dot"></span>
+Spotify Support Intelligence
+</div>
+<h1 class="hero-title">
+{SPOTIFY_LOGO_SVG}
+Customer Support Assistant
+</h1>
+<p class="hero-subtitle">
+Ask any Spotify support question to receive an instant, grounded response powered by historical support intelligence.
+</p>
+</div>
+</div>""",
     unsafe_allow_html=True,
 )
 
@@ -598,36 +588,16 @@ if submitted:
         # ====================================================
 
         st.markdown(
-            f"""
-            <div class="reply-card">
-
-                <div class="reply-header">
-
-                    <div class="reply-title-row">
-
-                        {BOT_AVATAR_SVG}
-
-                        <span>
-                            Spotify Support Reply
-                        </span>
-
-                    </div>
-
-                    <span style="
-                        font-size: 0.78rem;
-                        color: #8b949e;
-                    ">
-                        Verified Grounding
-                    </span>
-
-                </div>
-
-                <div class="reply-content">
-                    {result.response_text}
-                </div>
-
-            </div>
-            """,
+            f"""<div class="reply-card">
+<div class="reply-header">
+<div class="reply-title-row">
+{BOT_AVATAR_SVG}
+<span>Spotify Support Reply</span>
+</div>
+<span style="font-size: 0.78rem; color: #8b949e;">Verified Grounding</span>
+</div>
+<div class="reply-content">{result.response_text}</div>
+</div>""",
             unsafe_allow_html=True
         )
 
@@ -638,44 +608,21 @@ if submitted:
 
         meta_col1, meta_col2 = st.columns(2)
 
-
         with meta_col1:
-
             st.markdown(
-                f"""
-                **Intent Category:**
-                <span class='pill pill-blue'>
-                    📋 {result.predicted_intent}
-                </span>
-                """,
+                f"**Intent Category:** <span class='pill pill-blue'>📋 {result.predicted_intent}</span>",
                 unsafe_allow_html=True
             )
 
-
         with meta_col2:
-
             if result.escalation == "HUMAN_ESCALATION":
-
                 st.markdown(
-                    f"""
-                    **Escalation Policy:**
-                    <span class='pill pill-red'>
-                        ⚠️ Human Review
-                        ({result.escalation_reason})
-                    </span>
-                    """,
+                    f"**Escalation Policy:** <span class='pill pill-red'>⚠️ Human Review ({result.escalation_reason})</span>",
                     unsafe_allow_html=True
                 )
-
             else:
-
                 st.markdown(
-                    """
-                    **Escalation Policy:**
-                    <span class='pill pill-green'>
-                        ✅ Auto-Handled
-                    </span>
-                    """,
+                    "**Escalation Policy:** <span class='pill pill-green'>✅ Auto-Handled</span>",
                     unsafe_allow_html=True
                 )
 
@@ -687,40 +634,16 @@ if submitted:
         with st.expander(
             "📚 View Supporting Historical Spotify Cases"
         ):
-
             for idx, row in result.similar_cases.head(3).iterrows():
-
                 st.markdown(
-                    f"""
-                    <div class="case-card">
-
-                        <div class="case-header">
-
-                            {USER_AVATAR_SVG}
-
-                            <strong>
-                                Customer:
-                            </strong>
-
-                            {row['customer_query']}
-
-                        </div>
-
-                        <div style="
-                            font-size: 0.85rem;
-                            color: #8b949e;
-                            padding-left: 24px;
-                        ">
-
-                            <strong>
-                                Spotify Agent:
-                            </strong>
-
-                            {row['support_response']}
-
-                        </div>
-
-                    </div>
-                    """,
+                    f"""<div class="case-card">
+<div class="case-header">
+{USER_AVATAR_SVG}
+<strong>Customer:</strong> {row['customer_query']}
+</div>
+<div style="font-size: 0.85rem; color: #8b949e; padding-left: 24px; margin-top: 6px;">
+<strong>Spotify Agent:</strong> {row['support_response']}
+</div>
+</div>""",
                     unsafe_allow_html=True
                 )
