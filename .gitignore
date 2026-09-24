@@ -5,11 +5,14 @@ __pycache__/
 .env
 .DS_Store
 
-# Ignore raw numpy embeddings array (FAISS index alone is used for retrieval)
+# Data files & Datasets
+*.csv
+data/*.csv
 *.npy
+*.index
 
-# Ignore raw dataset and evaluation logs (not needed for Streamlit app)
-data/twcs.csv
-data/classifier_predictions.csv
-data/classifier_wrong_predictions.csv
+# Model checkpoints & artifacts
+data/models/*.pkl
+data/models/*.keras
+data/models/*.h5
 
